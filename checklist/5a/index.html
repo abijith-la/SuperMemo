@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>Implement components services and controllers</h1>
+    <div ng-controller="myController">
+        <h1>My Data:</h1>
+        <ul>
+            <li ng-repeat="item in myData">{{item}}</li>
+        </ul>
+    </div>
+
+    <my-component></my-component>
+</body>
+</html>

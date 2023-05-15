@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <h1>AngularJS Navigation Menu</h1>
+    <div>- Include AngularJS and Angular route links using script tag</div>
+    <div>- Define the separate pages under the type="text/ng-template" using script</div>
+    <div>- Use ng-route to route to the respective pages based on the value of the $routeprovider</div>
+    <div>- Define separate controllers for each application</div>
+    <div>- Navigate to the respective webpage using the navigation menu at the top</div>
+    <nav>
+        <ul>
+            <li><a href="#!/">Home</a></li>
+            <li><a href="#!/about">About</a></li>
+            <li><a href="#!/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div ng-view></div>
+    <script type="text/ng-template" id="home.html">
+        <h1>Home</h1>
+        <p>{{message}}</p>
+    </script>
+    <script type="text/ng-template" id="about.html">
+        <h1>About</h1>
+        <p>{{message}}</p>
+    </script>
+    <script type="text/ng-template" id="contact.html">
+        <h1>Contact</h1>
+        <p>{{message}}</p>
+    </script>
+    <script>
+        var myApp = angular.module('myApp', ['ngRoute']);
+        myApp.config(function($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'home.html',
+                    controller: 'homeController'
+                })
+                .when('/about', {
+                    templateUrl: 'about.html',
+                    controller: 'aboutController'
+                })
+                .when('/contact', {
+                    templateUrl: 'contact.html',
+                    controller: 'contactController'
+                });
+        });
+        myApp.controller('homeController', function($scope) {
+            $scope.message = 'Welcome to my home page!';
+        });
+        myApp.controller('aboutController', function($scope) {
+            $scope.message = 'Learn more about me!';
+        });
+        myApp.controller('contactController', function($scope) {
+            $scope.message = 'Get in touch!';
+        });
+    </script>
+</body>
+</html>

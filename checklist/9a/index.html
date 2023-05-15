@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Video Player</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<style>
+    body {
+      text-align: center;
+    }
+    
+    video {
+      padding: 5vmin;  
+      width: 640px;
+      height: 360px;
+    }
+
+    button {
+      margin: 10px;
+    }
+  </style>
+<body ng-app="myApp" ng-controller="videoController">
+    <h1>Video player using AngularJS</h1>
+    <div>- ngclick skip(-20) - used to rewind 20secs</div>
+    <div>- skip(20) - used to fast forward 20secs</div>
+    <div>- pauseVid() - pause the video</div>
+    <div>- playVid() - play the video</div>
+    <div>- restart() - restart the video from the beginning</div>
+  <video ng-src="{{videoUrl}}" controls></video>
+  <br>
+  <button ng-click="skip(-20)">Rewind 20 secs</button>
+  <button ng-click="skip(20)">Fast forward 20 secs</button>
+  <button ng-click="pauseVid()">Pause</button>
+  <button ng-click="playVid()">Play</button>
+  <button ng-click="restart()">Restart</button>
+
+  <script>
+    var app = angular.module('myApp', []);
+
+    app.controller('videoController', function($scope) {
+      $scope.videoUrl = 'video.mp4';
+      $scope.video = document.querySelector('video');
+
+      $scope.skip = function(time) {
+        $scope.video.currentTime += time;
+      };
+
+      $scope.pauseVid = function() {
+        $scope.video.pause();
+      };
+
+      $scope.playVid = function() {
+        $scope.video.play();
+      };
+
+      $scope.restart = function() {
+        $scope.video.currentTime = 0;
+        $scope.video.play();
+      };
+    });
+  </script>
+</body>
+</html>

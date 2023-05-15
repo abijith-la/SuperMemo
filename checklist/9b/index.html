@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="textEditorApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Text Editor using AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #editor {
+            width: 100%;
+            height: 200px;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body ng-controller="textEditorController">
+    <h1>Text editor using AngularJS</h1>
+    <div>- Use divs, tables, textareas, buttons, forms, controllers etc</div>
+    <div>- Use ng-click to add onclick functionality to the buttons, and ng-controller to control the data flow</div>
+    <div>- Use ng-hide and ng-show to hide and show elements</div>
+    <div>- Use clipboard API to get permission to access the clipboard and paste text</div>
+    <div>- Use clipboard API to get permission to access the clipboard and paste text</div>
+    <div>- Use fileReader to read uploaded text files</div>
+    <div>- Use fileReader to read uploaded text files</div>
+    <div>-Add CSS to align the buttons and the text editor</div>
+
+    &nbsp;
+    <textarea id="editor" ng-model="editorText"></textarea>
+
+
+    <div>
+        <button ng-click="clear()">Clear</button>
+        <button ng-click="copy()">Copy</button>
+        <button ng-click="paste()">Paste</button>
+        <button ng-click="save()">Save</button>
+    </div>
+
+
+    <input type="file" id="fileInput" style="display: none" ng-model="selectedFile">
+
+    <script>
+        var app = angular.module('textEditorApp', []);
+
+        app.controller('textEditorController', function ($scope) {
+            // Initialize editor text
+            $scope.editorText = '';
+
+            // Clear editor text
+            $scope.clear = function () {
+                $scope.editorText = '';
+            };
+
+            // Copy editor text to clipboard
+            $scope.copy = function () {
+                navigator.clipboard.writeText($scope.editorText);
+            };
+
+            // Paste clipboard text to editor
+            $scope.paste = function () {
+                navigator.clipboard.readText().then(function (text) {
+                    $scope.editorText = text;
+                });
+            };
+
+            // Save editor text to localStorage
+            $scope.save = function () {
+                var fileName = prompt('Enter a file name:', 'text.txt');
+                if (fileName) {
+                    localStorage.setItem(fileName, $scope.editorText);
+                    alert('File saved successfully!');
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>

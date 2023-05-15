@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description"
+        content="Experience Super Memo, our note-taking app, the ultimate tool for organizing and managing your notes. Our mission is to provide a user-friendly, web-based solution that allows you to create, edit, and store your notes efficiently" />
+    <title>Super Memo | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+    <div class="title-seq">Welcome to SuperMemo</div>
+    <div class="blur" onclick="closePopUp()"></div>
+    <div class="spacer layer1 flip"></div>
+    <div class="topbar">
+        <button type="button" class="collapsible">
+            <i class="fa-solid fa-gear"></i>
+        </button>
+        <div>
+            <h1 class="topbar-title">SuperMemo</h1>
+        </div>
+        &nbsp;
+        &nbsp;
+        <button type="button" onclick="toggleEditor()" class="editnote">
+            <i class="fa-solid fa-edit"></i>
+        </button>
+        &nbsp;&nbsp;&nbsp;
+        <input class="searchbar">
+        <button type="button" onclick="titleSeq()" class="search">
+            <i class="fa-solid fa-search"></i>
+        </button>
+
+        &nbsp;&nbsp;&nbsp;
+
+        <a href="menu.html">
+            <button type="button" class="submit-btn" >
+                Menu
+            </button>
+        </a>
+        
+    </div>
+    <div class="wrapper">
+        <div class="sidebar" id="options-sidebar">
+            <div class="profile-text">Profile</div>
+            <button type="button" onclick="showLogin()" title="Click to Login" class="profilebutton"></button>
+            <br>
+            <div>
+                <video class="videoplayer" src="styles\SuperMemoRSMB.mp4" loop autoplay muted height="100%"
+                    width="100%"></video>
+            </div>
+        </div>
+    </div>
+    <div class="editor" id="editor">
+        <div class="options">
+            <!--text format-->
+            <button id="bold" class="option-button format">
+                <i class="fa-solid fa-bold"></i>
+            </button>
+            <button id="italic" class="option-button format">
+                <i class="fa-solid fa-italic"></i>
+            </button>
+            <button id="underline" class="option-button format">
+                <i class="fa-solid fa-underline"></i>
+            </button>
+            <button id="strikethrough" class="option-button format">
+                <i class="fa-solid fa-strikethrough"></i>
+            </button>
+            <button id="superscript" class="option-button script">
+                <i class="fa-solid fa-superscript"></i>
+            </button>
+            <button id="subscript" class="option-button script">
+                <i class="fa-solid fa-subscript"></i>
+            </button>
+
+            <!--List-->
+            <button id="insertOrderedList" class="option-button">
+                <div class="fa-solid fa-list-ol"></div>
+            </button>
+            <button id="insertUnorderedList" class="option-button">
+                <i class="fa-solid fa-list"></i>
+            </button>
+            <!-- Undo/Redo -->
+            <button id="undo" class="option-button">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            <button id="redo" class="option-button">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <!-- Link -->
+            <button id="createLink" class="adv-option-button">
+                <i class="fa fa-link"></i>
+            </button>
+            <button id="unlink" class="option-button">
+                <i class="fa fa-unlink"></i>
+            </button>
+            <!-- Alignment -->
+            <button id="justifyLeft" class="option-button align">
+                <i class="fa-solid fa-align-left"></i>
+            </button>
+            <button id="justifyCenter" class="option-button align">
+                <i class="fa-solid fa-align-center"></i>
+            </button>
+            <button id="justifyRight" class="option-button align">
+                <i class="fa-solid fa-align-right"></i>
+            </button>
+            <button id="justifyFull" class="option-button align">
+                <i class="fa-solid fa-align-justify"></i>
+            </button>
+            <button id="indent" class="option-button spacing">
+                <i class="fa-solid fa-indent"></i>
+            </button>
+            <button id="outdent" class="option-button spacing">
+                <i class="fa-solid fa-outdent"></i>
+            </button>
+
+            <!-- Headings -->
+            <select id="formatBlock" class="adv-option-button">
+                <option value="H1">H1</option>
+                <option value="H2">H2</option>
+                <option value="H3">H3</option>
+                <option value="H4">H4</option>
+                <option value="H5">H5</option>
+                <option value="H6">H6</option>
+            </select>
+
+            <!-- Font -->
+            <select id="fontName" class="adv-option-button"></select>
+            <select id="fontSize" class="adv-option-button"></select>
+
+            <!--Color-->
+            <div class="input-wrapper">
+                <input type="color" id="foreColor" class="adv-option-button" />
+                <label for="foreColor">Font Color</label>
+            </div>
+            <div class="input-wrapper">
+                <input type="color" id="backColor" class="adv-option-button" />
+                <label for="backColor">Highlight Color</label>
+            </div>
+        </div>
+        <div id="text-input" contenteditable="true"></div>
+    </div>
+    <div class="loginformbox">
+        <div>
+            <h1>Login</h1>
+            &nbsp;
+            <form>
+                <input type="text" class="form-input" id="lemail" placeholder="Email">
+                <br><br>
+                <input type="password" class="form-input" id="lpassword" placeholder="Password">
+            </form>
+            &nbsp;
+            <div class="switchformbutton" onclick="switchForm()"><u>Create new account</u></div>
+        </div>
+        <div><button type="button" class="submit-btn" onclick="loginSubmit()">Submit</button></div>
+    </div>
+    <div class="registerformbox" id="login">
+        <div>
+            <h1>Register</h1>
+            &nbsp;
+            <form>
+                <input type="text" class="form-input" id="remail" placeholder="Email">
+                <br><br>
+                <input type="text" class="form-input" id="rusername" placeholder="Username">
+                <br><br>
+                <input type="password" class="form-input" id="rpassword" placeholder="Password">
+                <br><br>
+                <input type="password" class="form-input" id="rconfirmpassword" placeholder="Confirm Password">
+            </form>
+            &nbsp;
+            <div class="switchformbutton" onclick="switchForm()"><u>Login instead</u></div>
+        </div>
+        <div><button type="button" class="submit-btn" onclick="registrationSubmit()">Submit</button></div>
+    </div>
+    <div class="alert-msg">
+        <div class="alert-title">ALERT</div>
+        <div class="alert-text">placeholder</div>
+        <div class="alert-tip">click to dismiss</div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

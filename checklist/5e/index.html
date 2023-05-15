@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <h1>Define an ng-app and ng-model directives for the program</h1>
+    <div ng-controller="myController">
+        <h1>{{ greeting }}</h1>
+        <input type="text" ng-model="name">
+        <p>Your name is: {{ name }}</p>
+    </div>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', function($scope) {
+            $scope.greeting = 'Hello, world!';
+        });
+    </script>
+</body>
+</html>

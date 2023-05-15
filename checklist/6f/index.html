@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <h1>Use ng-switch to switch between layouts</h1>
+    <h1>Use above procedure and implement at least 2 layouts (list and grid)</h1>
+    <div ng-controller="myController">
+        <h1>{{message}}</h1>
+        <div ng-switch="layout">
+            <div ng-switch-when="list">
+                <ul>
+                    <li ng-repeat="item in items">{{item}}</li>
+                </ul>
+            </div>
+            <div ng-switch-when="grid">
+                <div class="grid-container">
+                    <div class="grid-item" ng-repeat="item in items">{{item}}</div>
+                </div>
+            </div>
+            <div ng-switch-default>
+                <p>No layout selected.</p>
+            </div>
+        </div>
+        <button ng-click="setLayout('list')">List Layout</button>
+        <button ng-click="setLayout('grid')">Grid Layout</button>
+    </div>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+        .grid-item {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', function($scope) {
+            $scope.message = 'Welcome to my app!';
+            $scope.layout = '';
+            $scope.items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+            $scope.setLayout = function(layout) {
+                $scope.layout = layout;
+            };
+        });
+    </script>
+</body>
+</html>

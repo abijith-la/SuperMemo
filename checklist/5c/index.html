@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', ['$scope', function($scope) {
+            $scope.formData = {};
+
+            $scope.submitForm = function() {
+                if ($scope.myForm.$valid) {
+                    alert('Form submitted successfully!');
+                } else {
+                    alert('Please fix the errors and try again.');
+                }
+            };
+        }]);
+    </script>
+</head>
+<body>
+    <div ng-controller="myController">
+        <h1>Form validation using AngularJS</h1>
+        <h1>My Form:</h1>
+        <form name="myForm" novalidate>
+            <label>Name:</label>
+            <input type="text" name="name" ng-model="formData.name" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" ng-model="formData.email" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" ng-model="formData.password" ng-minlength="8" required>
+
+            <button type="button" ng-click="submitForm()">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

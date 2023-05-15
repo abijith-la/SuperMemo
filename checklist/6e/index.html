@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <style>
+        .fade {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fade.ng-hide {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+    <h1>Use CSS to function along with ng-hide for animations</h1>
+    <div ng-controller="myController">
+        <h1>{{message}}</h1>
+        <button ng-click="toggle()">Toggle</button>
+        <div class="fade" ng-hide="show">
+            <p>This element will be hidden with animation when the "Toggle" button is clicked.</p>
+        </div>
+    </div>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', function($scope) {
+            $scope.message = 'Welcome to my app!';
+            $scope.show = false;
+            $scope.toggle = function() {
+                $scope.show = !$scope.show;
+            };
+        });
+    </script>
+</body>
+</html>

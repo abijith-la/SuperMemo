@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <h1>Use ng-click to add onclick functionality to the buttons, and ng-controller to control the data flow</h1>
+    <div ng-controller="myController">
+        <h1>{{message}}</h1>
+        <input type="text" ng-model="name">
+        <button ng-click="sayHello()">Say Hello</button>
+    </div>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', function($scope) {
+            $scope.message = 'Welcome to my app!';
+            $scope.name = '';
+            $scope.sayHello = function() {
+                if ($scope.name) {
+                    $scope.message = 'Hello, ' + $scope.name + '!';
+                }
+            };
+        });
+    </script>
+</body>
+</html>
+

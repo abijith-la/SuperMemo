@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', ['$scope', 'myService', function($scope, myService) {
+            $scope.myData = myService.getData();
+
+            $scope.searchFilter = function(item) {
+                if (!$scope.searchText) {
+                    return true;
+                }
+
+                var searchText = $scope.searchText.toLowerCase();
+                var itemText = item.toLowerCase();
+
+                return itemText.indexOf(searchText) !== -1;
+            };
+        }]);
+        myApp.service('myService', function() {
+            this.getData = function() {
+                return ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>Implement search to filter items</h1>
+    <div ng-controller="myController">
+        <h1>My Data:</h1>
+        <input type="text" ng-model="searchText" placeholder="Search...">
+        <ul>
+            <li ng-repeat="item in myData | filter:searchFilter">{{item}}</li>
+        </ul>
+    </div>
+</body>
+</html>

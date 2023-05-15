@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My AngularJS App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <style>
+        .fade.ng-hide {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+    <h1> Use ng-hide and ng-show to hide and show elements (animations)</h1>
+    <div ng-controller="myController">
+        <button ng-click="toggle()">Toggle</button>
+        <div ng-show="isVisible" class="fade">This element is visible!</div>
+        <div ng-hide="isVisible" class="fade">This element is hidden!</div>
+    </div>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('myController', function($scope) {
+            $scope.isVisible = true;
+            $scope.toggle = function() {
+                $scope.isVisible = !$scope.isVisible;
+            };
+        });
+    </script>
+</body>
+</html>
